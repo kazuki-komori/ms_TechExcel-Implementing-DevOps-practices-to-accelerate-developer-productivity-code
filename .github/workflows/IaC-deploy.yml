@@ -11,6 +11,8 @@
     
   permissions:
     id-token: write
+    contents: read
+    pages: write
   # The overall workflow name will be Azure Bicep. This will show up in the
   # GitHub Action page.
   name: Azure Bicep
