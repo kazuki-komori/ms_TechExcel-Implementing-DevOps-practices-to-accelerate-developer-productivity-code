@@ -60,7 +60,7 @@ jobs:
     needs: dockerBuildPush
     environment:
       name: dev
-      url: https://${{ secrets.AZURE_PREFIX }}-dev.azurewebsites.net/
+      url: https://dimz5inllxqby-dev.azurewebsites.net/
     
     steps:
       - name: 'Login via Azure CLI'
@@ -70,7 +70,7 @@ jobs:
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: '${{ secrets.AZURE_PREFIX }}-dev'
+          app-name: 'dimz5inllxqby-dev'
           images: ${{ secrets.ACR_SERVER_NAME }}.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-test:
@@ -79,7 +79,7 @@ jobs:
     needs: deploy-to-dev
     environment:
       name: test
-      url: https://${{ secrets.AZURE_PREFIX }}-test.azurewebsites.net/
+      url: https://dimz5inllxqby-test.azurewebsites.net/
     
     steps:
     - uses: actions/checkout@v3
@@ -91,7 +91,7 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: '${{ secrets.AZURE_PREFIX }}-test'
+        app-name: 'dimz5inllxqby-test'
         images: ${{ secrets.ACR_SERVER_NAME }}.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-prod:
@@ -100,7 +100,7 @@ jobs:
     needs: deploy-to-test
     environment:
       name: prod
-      url: https://${{ secrets.AZURE_PREFIX }}-prod.azurewebsites.net/
+      url: https://dimz5inllxqby-prod.azurewebsites.net/
     
     steps:
     - uses: actions/checkout@v3
@@ -112,5 +112,5 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: '${{ secrets.AZURE_PREFIX }}-prod'
+        app-name: 'dimz5inllxqby-prod'
         images: ${{ secrets.ACR_SERVER_NAME }}.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
